@@ -10,6 +10,9 @@ pool:
   vmImage: windows-latest
 
 steps:
-- script: |
-  .\PrivateBuild.ps1
-  displayName: 'Build script'
+- task: PowerShell@2
+  displayName: Build.ps1
+  inputs:
+    targetType: filePath
+    filePath: ./build.ps1
+    arguments: '; PrivateBuild'
