@@ -1,0 +1,29 @@
+@startuml
+
+scale 2/3
+'left to right direction
+center header
+    C4 Architecture: Container Diagram Header
+endheader
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+title Container diagram 
+
+Person(someuser, "Name", "Description")
+
+System_Ext(externalsystemtag, "Name", "Description")
+
+System_Boundary(thecontainer, "System Container") {
+    Container(somemodule, "Name", "Description", "Detail")
+    Container(somemodule2, "Name2", "Description", "Detail")
+}
+
+Rel(somemodule, somemodule2, "Name", "Protocol")
+Rel(someuser, somemodule, "Name", "Protocol")
+Rel(somemodule2, externalsystemtag, "Name", "Protocol")
+
+center footer
+    C4 Architecture: Container Diagram Footer $(Version)
+endfooter
+@enduml

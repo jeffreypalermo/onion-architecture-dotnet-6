@@ -1,0 +1,33 @@
+@startuml
+
+scale 2/3
+'left to right direction
+center header
+    C4 Architecture: Class Diagram (domain model)
+endheader
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+title Domain Model
+
+interface SomeBaseClass{}
+
+class SomeEntity {
+  -Property1 : int
+  -Property2 : string
+  +Method1() : SomeType
+  +Method2()
+} 
+SomeEntity::Method1-->SomeType : Some Description
+SomeEntity-|>SomeBaseClass : Implements
+
+enum SomeType{
+	Consortium
+	Competitive
+	AddOnOnly
+}
+
+center footer
+    C4 Architecture: Class Diagram $(Version)
+endfooter
+@enduml

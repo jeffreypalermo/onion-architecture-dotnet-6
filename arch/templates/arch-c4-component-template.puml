@@ -1,0 +1,35 @@
+@startuml
+
+scale 2/3
+'left to right direction
+center header
+    C4 Architecture: Component Diagram Header
+endheader
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+title Component diagram 
+
+Person(someuser, "Name", "Description")
+
+System_Ext(externalsystemtag, "Name", "Description")
+
+ContainerDb(database, "Database", "SQL Database", "Transactional data store")
+
+Container_Boundary(webapp, "Name") {
+    Component(screens, "Name", "Description", "Detail")
+    Component(somelayer, "Name", "Description", "Detail")
+    Component(someobjects, "Name", "Description")
+    
+    Rel_Neighbor(someuser, screens, "Name", "Protocol")
+    Rel(screens, somelayer, "Name", "Protocol")
+    Rel(somelayer, someobjects, "Name", "Protocol")
+    Rel(someobjects, database, "Relationship Name", "Protocol")
+}
+
+Rel(somelayer, externalsystemtag, "Name", "Protocol")
+
+center footer
+    C4 Architecture: Component Diagram Footer $(Version)
+endfooter
+@enduml

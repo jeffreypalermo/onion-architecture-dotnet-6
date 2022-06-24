@@ -1,0 +1,48 @@
+@startuml
+scale 2/3
+left to right direction
+center header
+    4+1 Architecture: Development (DevOps)
+endheader
+
+title 4+1 Development View <&circle-check>
+
+!define AzurePuml https://raw.githubusercontent.com/ClearMeasureLabs/Azure-PlantUML/master/dist
+ 
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/DevOps/AzureArtifacts.puml
+!includeurl AzurePuml/DevOps/AzureDevOps.puml
+!includeurl AzurePuml/DevOps/AzurePipelines.puml
+!includeurl AzurePuml/DevOps/AzureRepos.puml
+!includeurl AzurePuml/General/Azure.puml
+!includeurl AzurePuml/Web/AzureWebApp.puml
+
+actor "Programmer" as actor
+AzureDevOps(azdo,"Azure DevOps project","https://dev.azure.com/clearmeasurelabs/ Onion-DevOps-Architecture/")
+AzureRepos(git,"Git","https://dev.azure.com/clearmeasurelabs/ Onion-DevOps-Architecture/_git/Onion-DevOps-Architecture-v3")
+AzurePipelines(pipeline,"Integration Build","https://dev.azure.com/clearmeasurelabs/ Onion-DevOps-Architecture/_build?definitionId=68")
+AzureArtifacts(artifact,"Artifacts","https://dev.azure.com/clearmeasurelabs/ Onion-DevOps-Architecture/_artifacts/feed/ Onion-DevOps-Architecture-v3")
+Azure(azai, "Azure", "Some Name")
+AzureWebApp(tdd, "TDD Env.", "Environment")
+AzureWebApp(uat, "UAT Env.", "Environment")
+AzureWebApp(prod, "Prod Env.", "Environment")
+
+actor -> azdo : Make change
+azdo->git : commit/push
+git->pipeline : Build
+pipeline-->artifact : Push
+pipeline->tdd: deploy
+tdd-->artifact: get release candidate
+tdd->uat: deploy
+uat-->artifact: get release candidate
+uat->prod: deploy
+prod-->artifact: get release candidate
+prod-->azai: telemetry
+
+
+
+
+center footer
+    4+1 Architecture: Development (DevOps) $(Version)
+endfooter
+@enduml
