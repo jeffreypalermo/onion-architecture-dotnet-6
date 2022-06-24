@@ -1,0 +1,28 @@
+@startuml
+
+scale 2/3
+left to right direction
+center header
+    C4 Architecture: Container Diagram Header
+endheader
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+title Container diagram 
+
+Person(someuser, "Name", "Description")
+
+System_Boundary(system, "Church Bulletin") {
+    Container(db, "Database", "Azure SQL Database", "Detail")
+    Container(appservice, "App Service", "Web or Container", "Detail")
+    Container(ui, "UI/user app", "Blazor WASM", "Detail")
+}
+
+Rel(someuser, ui, "Uses", "http")
+Rel(ui, appservice, "Calls", "http")
+Rel(appservice, db, "Calls", "tcp")
+
+center footer
+    C4 Architecture: Container Diagram Footer $(Version)
+endfooter
+@enduml

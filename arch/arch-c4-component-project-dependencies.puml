@@ -1,0 +1,41 @@
+@startuml
+
+scale 2/3
+'left to right direction
+center header
+    C4 Architecture: Component Diagram Header
+endheader
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+title Church Bulletin Component diagram 
+
+ContainerDb(database, "Database", "SQL Database", "Transactional data store")
+
+Container_Boundary(visualstudiosolution, "ChurchBulletin.sln") {
+    Component(core, "Core", "Inner layer of onion architecture", "netstandard2.1/net60")
+    Component(dataAccess, "DataAccess", "House Entity Framework", "Handle interaction with SQL Server")
+    Component(databaseProject, "Database", "Manage creation and migrating database schema")
+    Component(unitTests, "Unit Tests", "Tests all in-memory logic")
+    Component(integrationTests, "Integration Tests", "Tests all logic that flows between different memory spaces")
+    Component(uiServer, "Api", "Blazor server project housing web api endpoints")
+    Component(uiClient, "User Interface", "Blazor Wasm interactive application")
+    Component(startup, "App Startup", "Bootstraps dependencies and starts application")
+}
+
+Rel(dataAccess, core, "Project Reference")
+Rel(uiServer, core, "Project Reference")
+Rel(uiClient, core, "Project Reference")
+Rel(databaseProject, database, "AliaSQL/DbUP")
+Rel(uiServer, uiClient, "Project Reference")
+Rel(dataAccess, database, "ConnectionString")
+Rel(startup, core, "Project Reference")
+Rel(startup, dataAccess, "Project Reference")
+Rel(startup, uiServer, "Project Reference")
+Rel(startup, uiClient, "Project Reference")
+
+
+center footer
+    C4 Architecture: Component Diagram Footer $(Version)
+endfooter
+@enduml

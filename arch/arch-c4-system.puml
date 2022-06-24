@@ -1,0 +1,38 @@
+@startuml
+
+scale 2/3
+'left to right direction
+center header
+    C4 Architecture: System Diagram Header
+endheader
+
+title Church Bulletin System Diagram <&circle-check>
+'
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
+
+'LAYOUT_WITH_LEGEND
+
+Person(pastor, "Senior Pastor", "Any clergy leader")
+Person(biblestudyleader, "Bible study leader", "leads classes")
+Person(worshipleader, "Worship Pastor", "music/choir")
+Person(childrenspastor, "Childrens' Pastor", "Kids ministry")
+Person(volunteer, "Volunteer", "Prepares bulletins and projects announcements")
+
+System(churchbulletin, "Church Bulletin", "Digital signage and printed bulletin")
+
+System_Ext(printer, "Printer")
+System_Ext(projector, "Projector")
+
+Rel(pastor, churchbulletin, "Add sermons")
+Rel(biblestudyleader, churchbulletin, "Add classes")
+Rel(worshipleader, churchbulletin, "Add services")
+Rel(childrenspastor, churchbulletin, "Add sunday school classes")
+Rel(volunteer, churchbulletin, "Operates system on Sunday morning")
+
+Rel(churchbulletin, printer, "Send PDF to print", "Network printer")
+Rel(churchbulletin, projector, "Projects digital signage", "Auto-animated")
+
+center footer
+    Diagram Footer $(Version)
+endfooter
+@enduml
