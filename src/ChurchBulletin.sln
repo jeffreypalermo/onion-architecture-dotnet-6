@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{637272DF-9DDB-420B-A3D1-174EB89DAD52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637272DF-9DDB-420B-A3D1-174EB89DAD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637272DF-9DDB-420B-A3D1-174EB89DAD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637272DF-9DDB-420B-A3D1-174EB89DAD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637272DF-9DDB-420B-A3D1-174EB89DAD52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
