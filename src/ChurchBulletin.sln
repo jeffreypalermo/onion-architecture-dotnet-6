@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{BE4922D2-08AF-437B-B8C9-C671D5F5B1BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{BE4922D2-08AF-437B-B8C9-C671D5F5B1BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{B839617D-F26D-4256-B4FC-E36320802B13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{B839617D-F26D-4256-B4FC-E36320802B13}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBE145BD-737C-47A5-BA88-A50ABAA81729}"
 	ProjectSection(SolutionItems) = preProject
@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arch", "arch", "{20334D25-8
 		..\arch\PlantUMLSetup.ps1 = ..\arch\PlantUMLSetup.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,14 @@ Global
 		{B839617D-F26D-4256-B4FC-E36320802B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B839617D-F26D-4256-B4FC-E36320802B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B839617D-F26D-4256-B4FC-E36320802B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A4C832-C5DB-44DA-9F9D-A1BF5761D361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
