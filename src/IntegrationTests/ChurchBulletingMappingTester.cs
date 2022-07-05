@@ -1,20 +1,15 @@
-using DataAccess.Mappings;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using Shouldly;
 
-namespace IntegrationTests
+namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests
 {
     public class ChurchBulletingMappingTester
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void ShouldMapChurchBulletin()
         {
-            var bulletin = new ChurchBulletin();
+            var bulletin = new ChurchBulletinItem();
             bulletin.Name = "Worship service";
             bulletin.Place = "Sanctuary";
             bulletin.Date = new DateTime(2022, 1, 1);
@@ -25,10 +20,10 @@ namespace IntegrationTests
                 context.SaveChanges();
             }
 
-            ChurchBulletin? rehydratedEntity;
+            ChurchBulletinItem? rehydratedEntity;
             using (var context = new DataContext(new TestDataConfiguration()))
             {
-                 rehydratedEntity = context.Set<ChurchBulletin>()
+                 rehydratedEntity = context.Set<ChurchBulletinItem>()
                     .SingleOrDefault(b => b == bulletin);
             }
 

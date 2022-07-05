@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace DataAccess.Mappings;
+namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 public class DataContext : DbContext
 {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 
-namespace DataAccess.Mappings;
+namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 public abstract class EntityMapBase<T> : IEntityFrameworkMapping where T : EntityBase<T>, new()
 {

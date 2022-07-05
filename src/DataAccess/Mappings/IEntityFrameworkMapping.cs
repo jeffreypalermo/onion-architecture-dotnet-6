@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Mappings;
+namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 public interface IEntityFrameworkMapping
 {

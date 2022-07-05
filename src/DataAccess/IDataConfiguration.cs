@@ -1,4 +1,4 @@
-﻿namespace DataAccess;
+﻿namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 
 public interface IDataConfiguration
 {

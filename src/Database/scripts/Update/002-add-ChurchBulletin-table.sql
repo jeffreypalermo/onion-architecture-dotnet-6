@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].ChurchBulletin
+﻿CREATE TABLE [dbo].ChurchBulletinItem
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [Name] NVARCHAR(50) NULL, 
