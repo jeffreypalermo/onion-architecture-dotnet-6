@@ -26,3 +26,15 @@ steps:
     testRunTitle: 'CI Tests'
   continueOnError: true
   condition: succeededOrFailed()
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/**/UnitTests/coverage.cobertura.xml'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/UnitTests/coverage.cobertura.xml'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/**/UnitTests/coverage.cobertura.xml copy'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/IntegrationTests/coverage.cobertura.xml'
