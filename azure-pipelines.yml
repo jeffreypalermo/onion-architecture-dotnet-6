@@ -16,3 +16,13 @@ steps:
     targetType: filePath
     filePath: ./build.ps1
     arguments: '; PrivateBuild'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results ./build/test/*.trx'
+  inputs:
+    testResultsFormat: VSTest
+    testResultsFiles: 'build/test/*.trx'
+    mergeTestResults: true
+    testRunTitle: 'CI Tests'
+  continueOnError: true
+  condition: succeededOrFailed()
