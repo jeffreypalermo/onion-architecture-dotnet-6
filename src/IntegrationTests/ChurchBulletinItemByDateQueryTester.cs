@@ -1,4 +1,6 @@
-﻿using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
@@ -13,12 +15,13 @@ public class ChurchBulletinItemByDateQueryTester
     public void ShouldGetWithinDate()
     {
         EmptyDatabase();
+
         var item1 = new ChurchBulletinItem() { Date = new DateTime(2000, 1, 1) };
         var item2 = new ChurchBulletinItem() { Date = new DateTime(1999, 1, 1) };
         var item3 = new ChurchBulletinItem() { Date = new DateTime(2001, 1, 1) };
         var item4 = new ChurchBulletinItem() { Date = new DateTime(2000, 1, 1) };
 
-        using (var context = new DataContext(new TestDataConfiguration()))
+        using (var context = TestHost.GetRequiredService<DbContext>())
         {
             context.AddRange(item1, item2, item3, item4);
             context.SaveChanges();
@@ -26,7 +29,7 @@ public class ChurchBulletinItemByDateQueryTester
 
         //arrange
         var query = new ChurchBulletinItemByDateAndTimeQuery(new DateTime(2000, 1, 1));
-        var handler = new ChurchBulletinItemByDateHandler(new DataContext(new TestDataConfiguration()));
+        IChurchBulletinItemByDateHandler handler = TestHost.GetRequiredService<ChurchBulletinItemByDateHandler>();
 
         //act
         IEnumerable<ChurchBulletinItem> items = handler.Handle(query).ToList();
@@ -41,6 +44,6 @@ public class ChurchBulletinItemByDateQueryTester
 
     private void EmptyDatabase()
     {
-        new DatabaseEmptier().DeleteAllData();
+        new DatabaseEmptier(TestHost.GetRequiredService<DbContext>().Database).DeleteAllData();
     }
 }

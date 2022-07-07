@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using Shouldly;
@@ -14,17 +16,17 @@ namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests
             bulletin.Place = "Sanctuary";
             bulletin.Date = new DateTime(2022, 1, 1);
 
-            using (var context = new DataContext(new TestDataConfiguration()))
+            using (var context = TestHost.GetRequiredService<DbContext>())
             {
                 context.Add(bulletin);
                 context.SaveChanges();
             }
 
-            ChurchBulletinItem? rehydratedEntity;
-            using (var context = new DataContext(new TestDataConfiguration()))
+            ChurchBulletinItem rehydratedEntity;
+            using (var context = TestHost.GetRequiredService<DbContext>())
             {
                  rehydratedEntity = context.Set<ChurchBulletinItem>()
-                    .SingleOrDefault(b => b == bulletin);
+                    .Single(b => b == bulletin);
             }
 
             rehydratedEntity.Id.ShouldBe(bulletin.Id);

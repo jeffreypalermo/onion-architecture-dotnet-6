@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# S4035: Classes implementing "IEquatable<T>" should be sealed
+dotnet_diagnostic.S4035.severity = suggestion

@@ -4,7 +4,7 @@ using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
 
-public class ChurchBulletinItemByDateHandler
+public class ChurchBulletinItemByDateHandler : IChurchBulletinItemByDateHandler
 {
     private readonly DataContext _context;
 

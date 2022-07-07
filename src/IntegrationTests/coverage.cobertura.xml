@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.8162999999999999" branch-rate="0.2" version="1.9" timestamp="1657126083" lines-covered="40" lines-valid="49" branches-covered="2" branches-valid="10">
+<coverage line-rate="0.8162999999999999" branch-rate="0.2" version="1.9" timestamp="1657232131" lines-covered="40" lines-valid="49" branches-covered="2" branches-valid="10">
   <sources>
     <source>C:\Users\JeffreyPalermo\Source\Repos\jeffreypalermo\onion-architecture-dotnet-6\src\</source>
   </sources>
@@ -75,28 +75,28 @@
                 <line number="11" hits="8" branch="False" />
               </lines>
             </method>
-            <method name="ToString" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="False" />
-              </lines>
-            </method>
             <method name="Equals" signature="(System.Object)" line-rate="0" branch-rate="0" complexity="6">
               <lines>
-                <line number="21" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="16" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="1" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="22" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="17" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="7" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="18" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="28" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="19" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="ToString" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
                 <line number="24" hits="0" branch="False" />
               </lines>
             </method>
@@ -128,22 +128,22 @@
               </conditions>
             </line>
             <line number="11" hits="8" branch="False" />
-            <line number="16" hits="0" branch="False" />
-            <line number="21" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="16" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="1" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="22" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="17" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="7" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="18" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="28" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="19" hits="0" branch="False" />
             <line number="24" hits="0" branch="False" />
             <line number="29" hits="0" branch="False" />
             <line number="34" hits="0" branch="False" />
@@ -170,10 +170,10 @@
           <methods>
             <method name="OnConfiguring" signature="(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="7" branch="False" />
-                <line number="17" hits="7" branch="False" />
-                <line number="19" hits="7" branch="False" />
-                <line number="20" hits="7" branch="False" />
+                <line number="16" hits="5" branch="False" />
+                <line number="17" hits="5" branch="False" />
+                <line number="19" hits="5" branch="False" />
+                <line number="20" hits="5" branch="False" />
               </lines>
             </method>
             <method name="OnModelCreating" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="1" branch-rate="1" complexity="1">
@@ -189,23 +189,23 @@
             </method>
             <method name=".ctor" signature="(ProgrammingWithPalermo.ChurchBulletin.DataAccess.IDataConfiguration)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="7" branch="False" />
-                <line number="11" hits="7" branch="False" />
-                <line number="12" hits="7" branch="False" />
+                <line number="9" hits="5" branch="False" />
+                <line number="11" hits="5" branch="False" />
+                <line number="12" hits="5" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="16" hits="7" branch="False" />
-            <line number="17" hits="7" branch="False" />
-            <line number="19" hits="7" branch="False" />
-            <line number="20" hits="7" branch="False" />
+            <line number="16" hits="5" branch="False" />
+            <line number="17" hits="5" branch="False" />
+            <line number="19" hits="5" branch="False" />
+            <line number="20" hits="5" branch="False" />
             <line number="24" hits="1" branch="False" />
             <line number="25" hits="1" branch="False" />
             <line number="29" hits="0" branch="False" />
-            <line number="9" hits="7" branch="False" />
-            <line number="11" hits="7" branch="False" />
-            <line number="12" hits="7" branch="False" />
+            <line number="9" hits="5" branch="False" />
+            <line number="11" hits="5" branch="False" />
+            <line number="12" hits="5" branch="False" />
           </lines>
         </class>
         <class name="ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings.EntityMapBase`1" filename="DataAccess\Mappings\EntityMapBase.cs" line-rate="1" branch-rate="1" complexity="1">

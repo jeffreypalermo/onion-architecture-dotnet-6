@@ -1,31 +1,34 @@
-﻿using System.Data.Common;
-using System.Data;
+﻿using System.Data;
+using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
 
 public class SqlExecuter
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
+    private readonly DatabaseFacade _facade;
+
+    public SqlExecuter(DatabaseFacade facade)
+    {
+        _facade = facade;
+    }
+
+    [SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
     public void ExecuteSql(string commandText, Action<DbDataReader> readerAction)
     {
-        var context = new DataContext(new TestDataConfiguration());
-        var dbConnection = context.Database.GetDbConnection();
-
-        dbConnection.Open();
-        using (var command = dbConnection.CreateCommand())
+        var connection = _facade.GetDbConnection();
+        connection.Open();
+        using (var command = connection.CreateCommand())
         {
             command.CommandType = CommandType.Text;
             command.CommandText =
                 commandText;
-            DbDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                readerAction(reader);
-            }
+            var reader = command.ExecuteReader();
+            while (reader.Read()) readerAction(reader);
         }
-        dbConnection.Close();
 
+        connection.Close();
     }
 }

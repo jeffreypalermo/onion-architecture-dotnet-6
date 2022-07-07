@@ -1,47 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
 
 public sealed class DatabaseEmptier
 {
-    private static readonly string[] _ignoredTables = new[] { "[dbo].[sysdiagrams]", "[dbo].[usd_AppliedDatabaseScript]" };
-    private static string _deleteSql;
+    private static readonly string[] _ignoredTables = { "[dbo].[sysdiagrams]", "[dbo].[usd_AppliedDatabaseScript]" };
+    private static string? _deleteSql;
+    private readonly DatabaseFacade _database;
 
-    private class Relationship
+    public DatabaseEmptier(DatabaseFacade database)
     {
-        public string PrimaryKeyTable { get; set; }
-        public string ForeignKeyTable { get; set; }
+        _database = database;
     }
 
     public void DeleteAllData()
     {
-        if (_deleteSql == null)
-        {
-            _deleteSql = BuildDeleteTableSqlStatement();
-        }
+        if (_deleteSql == null) _deleteSql = BuildDeleteTableSqlStatement();
 
-        var context = new DataContext(new TestDataConfiguration());
-
-        context.Database.ExecuteSqlRaw(_deleteSql);
+        _database.ExecuteSqlRaw(_deleteSql);
     }
 
     private string BuildDeleteTableSqlStatement()
     {
-        IList<string> allTables = GetAllTables();
-        IList<Relationship> allRelationships = GetRelationships();
-        string[] tablesToDelete = BuildTableList(allTables, allRelationships);
+        var allTables = GetAllTables();
+        var allRelationships = GetRelationships();
+        var tablesToDelete = BuildTableList(allTables, allRelationships);
 
         return BuildTableSql(tablesToDelete);
     }
 
     private static string BuildTableSql(IEnumerable<string> tablesToDelete)
     {
-        string completeQuery = "";
-        foreach (string tableName in tablesToDelete)
-        {
-            completeQuery += String.Format("delete from {0};", tableName);
-        }
+        var completeQuery = "";
+        foreach (var tableName in tablesToDelete) completeQuery += $"delete from {tableName};";
         return completeQuery;
     }
 
@@ -51,7 +43,7 @@ public sealed class DatabaseEmptier
 
         while (allTables.Any())
         {
-            string[] leafTables = allTables.Except(allRelationships.Select(rel => rel.PrimaryKeyTable)).ToArray();
+            var leafTables = allTables.Except(allRelationships.Select(rel => rel.PrimaryKeyTable)).ToArray();
 
             if (leafTables.Length == 0)
             {
@@ -61,25 +53,22 @@ public sealed class DatabaseEmptier
 
             tablesToDelete.AddRange(leafTables);
 
-            foreach (string leafTable in leafTables)
+            foreach (var leafTable in leafTables)
             {
                 allTables.Remove(leafTable);
-                Relationship[] relToRemove =
+                var relToRemove =
                     allRelationships.Where(rel => rel.ForeignKeyTable == leafTable).ToArray();
-                foreach (Relationship rel in relToRemove)
-                {
-                    allRelationships.Remove(rel);
-                }
+                foreach (var rel in relToRemove) allRelationships.Remove(rel);
             }
         }
 
         return tablesToDelete.ToArray();
     }
 
-    private static IList<Relationship> GetRelationships()
+    private IList<Relationship> GetRelationships()
     {
         var relationships = new List<Relationship>();
-        new SqlExecuter().ExecuteSql(
+        new SqlExecuter(_database).ExecuteSql(
             @"select
 	'[' + ss_pk.name + '].[' + so_pk.name + ']' as PrimaryKeyTable
 , '[' + ss_fk.name + '].[' + so_fk.name + ']' as ForeignKeyTable
@@ -95,25 +84,31 @@ order by
 	so_pk.name
 ,   so_fk.name;",
             reader => relationships.Add(
-                new Relationship()
+                new Relationship
                 {
-                    PrimaryKeyTable = reader["PrimaryKeyTable"].ToString(),
-                    ForeignKeyTable = reader["ForeignKeyTable"].ToString()
+                    PrimaryKeyTable = reader["PrimaryKeyTable"].ToString()!,
+                    ForeignKeyTable = reader["ForeignKeyTable"].ToString()!
                 }));
 
         return relationships;
     }
 
-    private static IList<string> GetAllTables()
+    private IList<string> GetAllTables()
     {
-        List<string> tables = new List<string>();
+        var tables = new List<string>();
 
-        new SqlExecuter().ExecuteSql(
+        new SqlExecuter(_database).ExecuteSql(
             @"select '[' + s.name + '].[' + t.name + ']'
 from sys.tables t
 inner join sys.schemas s on t.schema_id = s.schema_id",
             reader => tables.Add(reader.GetString(0)));
         var list = tables.Except(_ignoredTables);
         return list.Where(s => s.Contains("[dbo]")).ToList();
+    }
+
+    private class Relationship
+    {
+        public string PrimaryKeyTable { get; set; } = null!;
+        public string ForeignKeyTable { get; set; } = null!;
     }
 }
