@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using Shouldly;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
@@ -16,10 +14,10 @@ public class ChurchBulletinItemByDateQueryTester
     {
         EmptyDatabase();
 
-        var item1 = new ChurchBulletinItem() { Date = new DateTime(2000, 1, 1) };
-        var item2 = new ChurchBulletinItem() { Date = new DateTime(1999, 1, 1) };
-        var item3 = new ChurchBulletinItem() { Date = new DateTime(2001, 1, 1) };
-        var item4 = new ChurchBulletinItem() { Date = new DateTime(2000, 1, 1) };
+        var item1 = new ChurchBulletinItem { Date = new DateTime(2000, 1, 1) };
+        var item2 = new ChurchBulletinItem { Date = new DateTime(1999, 1, 1) };
+        var item3 = new ChurchBulletinItem { Date = new DateTime(2001, 1, 1) };
+        var item4 = new ChurchBulletinItem { Date = new DateTime(2000, 1, 1) };
 
         using (var context = TestHost.GetRequiredService<DbContext>())
         {

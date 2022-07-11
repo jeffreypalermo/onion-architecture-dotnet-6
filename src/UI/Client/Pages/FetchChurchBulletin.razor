@@ -1,0 +1,44 @@
+﻿@page "/fetchchurchbulletin"
+@using UI.Shared
+@using ProgrammingWithPalermo.ChurchBulletin.Core.Model
+@inject HttpClient Http
+
+<PageTitle>Church Bulletin</PageTitle>
+
+<h1>Church Bulletin</h1>
+
+<p>This component demonstrates fetching church bulletin items.</p>
+
+@if (bulletins == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bulletin in bulletins)
+            {
+                <tr>
+                    <td>@bulletin.Date.ToShortDateString()</td>
+                    <td>@bulletin.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ChurchBulletinItem[]? bulletins;
+
+    protected override async Task OnInitializedAsync()
+    {
+        bulletins = await Http.GetFromJsonAsync<ChurchBulletinItem[]>("ChurchBulletinItem");
+    }
+}
