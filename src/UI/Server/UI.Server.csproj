@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
+    <ProjectReference Include="..\..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Client\UI.Client.csproj" />
     <ProjectReference Include="..\Shared\UI.Shared.csproj" />
   </ItemGroup>

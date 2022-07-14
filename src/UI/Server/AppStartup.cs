@@ -1,4 +1,9 @@
-﻿using ProgrammingWithPalermo.ChurchBulletin.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
+
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server
 {
     public class UIStartup
@@ -8,6 +13,10 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             builder.Services.AddTransient<IDatabaseConfiguration, DatabaseConfiguration>();
+            builder.Services.AddTransient<IChurchBulletinItemByDateHandler, ChurchBulletinItemByDateHandler>();
+            builder.Services.AddScoped<DbContext, DataContext>();
+            builder.Services.AddDbContextFactory<DataContext>();
+            builder.Services.AddDbContextFactory<DbContext>();
         }
 
         public void ConfigureApp(WebApplication app)
