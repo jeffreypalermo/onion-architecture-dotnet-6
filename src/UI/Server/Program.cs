@@ -1,3 +1,4 @@
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
@@ -6,6 +7,17 @@ using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseLamar((context, registry) =>
+{
+    registry.Scan(scanner =>
+    {
+        scanner.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => 
+            assembly.FullName.Contains("palermo", StringComparison.InvariantCultureIgnoreCase));
+        scanner.TheCallingAssembly();
+        scanner.AssemblyContainingType<UI.Client.App>();
+        scanner.LookForRegistries();
+    });
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
