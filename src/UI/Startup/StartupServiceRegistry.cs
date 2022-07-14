@@ -9,9 +9,10 @@ public class StartupServiceRegistry : ServiceRegistry
     {
         Scan(scanner =>
         {
+            scanner.WithDefaultConventions();
             scanner.AssemblyContainingType<Core.HealthCheck>();
             scanner.AssemblyContainingType<DataAccess.HealthCheck>();
-            scanner.LookForRegistries();
+            scanner.AssemblyContainingType<Server.HealthCheck>();
         });       
     }
 }
