@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.cobertura.xml
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -350,3 +351,4 @@ MigrationBackup/
 .ionide/
 /build/test
 coverage.cobertura.xml
+/src/.idea/.idea.ChurchBulletin/.idea
