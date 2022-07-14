@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.4736" branch-rate="0.5" version="1.9" timestamp="1657232125" lines-covered="9" lines-valid="19" branches-covered="5" branches-valid="10">
+<coverage line-rate="0.4736" branch-rate="0.5" version="1.9" timestamp="1657810702" lines-covered="9" lines-valid="19" branches-covered="5" branches-valid="10">
   <sources>
-    <source>C:\Users\JeffreyPalermo\Source\Repos\jeffreypalermo\onion-architecture-dotnet-6\src\Core\</source>
+    <source>C:\Users\JeffreyPalermo\source\repos\jeffreypalermo\onion-architecture-dotnet-6\src\Core\</source>
   </sources>
   <packages>
     <package name="ProgrammingWithPalermo.ChurchBulletin.Core" line-rate="0.4736" branch-rate="0.5" complexity="20">

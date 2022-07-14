@@ -1,8 +1,1 @@
-using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
-var builder = WebApplication.CreateBuilder(args);
-var startup = new UIStartup();
-startup.ConfigureBuilder(builder);
-
-var app = builder.Build();
-startup.ConfigureApp(app);
-app.Run();
+throw new Exception("Use UI.Startup as the startup project since this project doesn't have a direct reference to any other interface projects");
