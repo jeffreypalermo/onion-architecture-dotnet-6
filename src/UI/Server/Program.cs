@@ -11,8 +11,8 @@ builder.Host.UseLamar((context, registry) =>
 {
     registry.Scan(scanner =>
     {
-        scanner.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => 
-            assembly.FullName.Contains("ProgrammingWithPalermo.ChurchBulletin.UI.Startup.dll", StringComparison.InvariantCultureIgnoreCase));
+        scanner.AssembliesFromApplicationBaseDirectory(assembly => 
+            assembly.FullName.Contains("Startup"));
         scanner.TheCallingAssembly();
         scanner.AssemblyContainingType<UI.Client.App>();
         scanner.LookForRegistries();
