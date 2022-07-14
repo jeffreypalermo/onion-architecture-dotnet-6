@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
-
+﻿using ProgrammingWithPalermo.ChurchBulletin.Core;
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server
 {
     public class UIStartup
@@ -12,11 +7,7 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server
         {
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
-            builder.Services.AddTransient<IChurchBulletinItemByDateHandler, ChurchBulletinItemByDateHandler>();
-            builder.Services.AddScoped<DbContext, DataContext>();
-            builder.Services.AddDbContextFactory<DataContext>();
-            builder.Services.AddDbContextFactory<DbContext>();
-            builder.Services.AddTransient<IDataConfiguration, DataConfiguration>();
+            builder.Services.AddTransient<IDatabaseConfiguration, DatabaseConfiguration>();
         }
 
         public void ConfigureApp(WebApplication app)
@@ -46,6 +37,8 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
+
+            app.UseHttpLogging();
         }
     }
 }

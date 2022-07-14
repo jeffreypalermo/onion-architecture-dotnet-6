@@ -1,12 +1,12 @@
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
-public class DataConfiguration : IDataConfiguration
+public class DatabaseConfiguration : IDatabaseConfiguration
 {
-    private IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
 
-    public DataConfiguration(IConfiguration configuration)
+    public DatabaseConfiguration(IConfiguration configuration)
     {
         _configuration = configuration;
     }

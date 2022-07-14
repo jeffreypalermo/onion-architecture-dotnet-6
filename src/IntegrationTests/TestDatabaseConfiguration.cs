@@ -1,13 +1,14 @@
 using Microsoft.Extensions.Configuration;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
 
-public class TestDataConfiguration : IDataConfiguration
+public class TestDatabaseConfiguration : IDatabaseConfiguration
 {
     private readonly IConfiguration _configuration;
 
-    public TestDataConfiguration(IConfiguration configuration)
+    public TestDatabaseConfiguration(IConfiguration configuration)
     {
         _configuration = configuration;
     }

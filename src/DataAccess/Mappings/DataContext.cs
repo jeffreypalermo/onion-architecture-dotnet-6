@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 public class DataContext : DbContext
 {
-    private readonly IDataConfiguration _config;
+    private readonly IDatabaseConfiguration _config;
 
-    public DataContext(IDataConfiguration config)
+    public DataContext(IDatabaseConfiguration config)
     {
         _config = config;
     }

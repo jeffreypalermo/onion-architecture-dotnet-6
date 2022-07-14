@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
@@ -45,7 +46,7 @@ public static class TestHost
             })
             .ConfigureServices(s =>
             {
-                s.AddTransient<IDataConfiguration, TestDataConfiguration>();
+                s.AddTransient<IDatabaseConfiguration, TestDatabaseConfiguration>();
                 s.AddTransient<IChurchBulletinItemByDateHandler, ChurchBulletinItemByDateHandler>();
                 s.AddTransient<ChurchBulletinItemByDateHandler>();
                 s.AddScoped<DbContext, DataContext>();
