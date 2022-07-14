@@ -1,16 +1,46 @@
+using Microsoft.EntityFrameworkCore;
+using ProgrammingWithPalermo.ChurchBulletin.Core;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
-var fullPath = Path.GetFullPath("../Server");
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
-{
-    ContentRootPath = fullPath
-});
+var builder = WebApplication.CreateBuilder(args);
 
-var startup = new UIStartup();
-startup.ConfigureBuilder(builder);
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddTransient<IDatabaseConfiguration, DatabaseConfiguration>();
+builder.Services.AddTransient<IChurchBulletinItemByDateHandler, ChurchBulletinItemByDateHandler>();
+builder.Services.AddScoped<DbContext, DataContext>();
+builder.Services.AddDbContextFactory<DataContext>();
+builder.Services.AddDbContextFactory<DbContext>();
 
 
 var app = builder.Build();
-app.Logger.LogInformation($"starting from {fullPath}");
-startup.ConfigureApp(app);
+app.Logger.LogInformation($"starting the app");
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("index.html");
+});
 app.Run();
