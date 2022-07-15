@@ -1,6 +1,4 @@
 using Lamar.Microsoft.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +6,7 @@ builder.Host.UseLamar(registry => registry.IncludeRegistry(new UIServiceRegistry
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<DbContext, DataContext>();
-builder.Services.AddDbContextFactory<DataContext>();
-builder.Services.AddDbContextFactory<DbContext>();
+
 
 
 var app = builder.Build();
