@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using UI.Shared;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 
-namespace UI.Server.Controllers
+namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
