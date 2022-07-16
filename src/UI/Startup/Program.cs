@@ -1,0 +1,1 @@
+throw new Exception("Use UI.Server for starting application");

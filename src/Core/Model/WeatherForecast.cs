@@ -1,5 +1,8 @@
-namespace UI.Shared
+namespace ProgrammingWithPalermo.ChurchBulletin.Core.Model
 {
+    /// <summary>
+    /// Template class from sample app - moved from UI.Shared
+    /// </summary>
     public class WeatherForecast
     {
         public DateTime Date { get; set; }

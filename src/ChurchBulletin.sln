@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\build.ps1 = ..\build.ps1
 		..\BuildFunctions.ps1 = ..\BuildFunctions.ps1
 		..\click_to_build.bat = ..\click_to_build.bat
+		global.json = global.json
 		..\PrivateBuild.ps1 = ..\PrivateBuild.ps1
 		..\README.md = ..\README.md
 	EndProjectSection
@@ -37,9 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Server", "UI\Server\UI.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Client", "UI\Client\UI.Client.csproj", "{E39B94C7-B569-444E-900A-5B43848D11EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Shared", "UI\Shared\UI.Shared.csproj", "{46FC2125-565D-411E-9B89-3935F93E0A11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Startup", "UI\Startup\UI.Startup.csproj", "{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Startup", "UI\Startup\UI.Startup.csproj", "{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,10 +74,6 @@ Global
 		{E39B94C7-B569-444E-900A-5B43848D11EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E39B94C7-B569-444E-900A-5B43848D11EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E39B94C7-B569-444E-900A-5B43848D11EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46FC2125-565D-411E-9B89-3935F93E0A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46FC2125-565D-411E-9B89-3935F93E0A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46FC2125-565D-411E-9B89-3935F93E0A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46FC2125-565D-411E-9B89-3935F93E0A11}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
