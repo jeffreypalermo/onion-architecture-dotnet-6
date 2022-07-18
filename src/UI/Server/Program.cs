@@ -3,9 +3,9 @@ using System.Reflection;
 using Lamar.Microsoft.DependencyInjection;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
-var assembly = GetStartupAssembly();
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry(assembly)); });
+builder.Host.UseLamar(registry => { registry.IncludeRegistry(
+    new UIServiceRegistry()); });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -39,16 +39,3 @@ app.UseEndpoints(endpoints =>
     endpoints.MapFallbackToFile("index.html");
 });
 app.Run();
-
-Assembly GetStartupAssembly()
-{
-    var startupDll = "ProgrammingWithPalermo.ChurchBulletin.UI.Startup.dll";
-    var currentDirectory = Path.Combine(Directory.GetCurrentDirectory(), @"bin\Debug\net6.0\");
-    Console.WriteLine(currentDirectory);
-    var fullPath = Path.Combine(currentDirectory, startupDll);
-    Debug.Assert(File.Exists(fullPath));
-    var assemblyName = AssemblyName.GetAssemblyName(fullPath);
-    var loadContext = new PluginLoadContext(fullPath);
-    var assembly1 = loadContext.LoadFromAssemblyName(assemblyName);
-    return assembly1;
-}

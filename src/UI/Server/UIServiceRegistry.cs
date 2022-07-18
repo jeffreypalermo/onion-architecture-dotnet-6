@@ -1,17 +1,16 @@
-﻿using System.Reflection;
-using Lamar;
+﻿using Lamar;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 public class UIServiceRegistry : ServiceRegistry
 {
-    public UIServiceRegistry(Assembly assembly)
+    public UIServiceRegistry()
     {
-        
         Scan(scanner =>
         {
-            scanner.Assembly(assembly);
-            
+            scanner.WithDefaultConventions();
+            scanner.AssemblyContainingType<Startup.HealthCheck>();
+            scanner.AssemblyContainingType<HealthCheck>();
             scanner.LookForRegistries();
         });
     }
