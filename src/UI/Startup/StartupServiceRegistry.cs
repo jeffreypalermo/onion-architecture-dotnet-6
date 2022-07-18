@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProgrammingWithPalermo.ChurchBulletin.Core;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup;

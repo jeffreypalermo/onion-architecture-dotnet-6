@@ -9,22 +9,19 @@
 	  <RootNamespace>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="Lamar" Version="8.0.1" >
-		  <Private>false</Private>
-		  <ExcludeAssets>runtime</ExcludeAssets>
-	  </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
+	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\Core.csproj">
 		  <Private>false</Private>
 		  <ExcludeAssets>runtime</ExcludeAssets>
 	  </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\DataAccess.csproj">
-		
+	    
     </ProjectReference>
-    <ProjectReference Include="..\Server\UI.Server.csproj" />
+	  <ProjectReference Include="..\Server\UI.Server.csproj">
+		  <Private>false</Private>
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </ProjectReference>
+
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
