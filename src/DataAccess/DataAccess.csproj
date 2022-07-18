@@ -24,8 +24,7 @@
 
   <ItemGroup>
 	  <ProjectReference Include="..\Core\Core.csproj" >
-		  <Private>false</Private>
-		  <ExcludeAssets>runtime</ExcludeAssets>
+
 	  </ProjectReference>
   </ItemGroup>
 

@@ -15,7 +15,7 @@
 		  <ExcludeAssets>runtime</ExcludeAssets>
 	  </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\DataAccess.csproj">
-	    
+
     </ProjectReference>
 	  <ProjectReference Include="..\Server\UI.Server.csproj">
 		  <Private>false</Private>

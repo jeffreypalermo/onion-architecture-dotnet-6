@@ -24,9 +24,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 
-
 var app = builder.Build();
-app.Logger.LogInformation($"starting the app");
+// app.Logger.LogInformation($"starting the app");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
