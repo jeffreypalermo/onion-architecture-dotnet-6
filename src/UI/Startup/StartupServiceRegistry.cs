@@ -1,5 +1,6 @@
 ﻿using Lamar;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 

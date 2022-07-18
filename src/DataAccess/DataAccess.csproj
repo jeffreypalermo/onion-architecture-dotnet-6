@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <EnableDynamicLoading>true</EnableDynamicLoading>
     <AssemblyName>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
