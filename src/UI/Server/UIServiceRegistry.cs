@@ -14,4 +14,5 @@ public class UIServiceRegistry : ServiceRegistry
             scanner.LookForRegistries();
         });
     }
+
 }
