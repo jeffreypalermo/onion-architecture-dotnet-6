@@ -1,25 +1,19 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
-namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess;
+namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup;
 
 public class HealthCheck : IHealthCheck
 {
     private readonly ILogger<HealthCheck> _logger;
-    private readonly DataContext _context;
 
-    public HealthCheck(ILogger<HealthCheck> logger, DataContext context)
+    public HealthCheck(ILogger<HealthCheck> logger)
     {
         _logger = logger;
-        _context = context;
     }
     
     public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new CancellationToken())
     {
-        if (!_context.Database.CanConnect()) 
-            return Task.FromResult(HealthCheckResult.Unhealthy("Cannot connect to database"));
-        
         _logger.LogInformation($"Health check success");
         return Task.FromResult(HealthCheckResult.Healthy());
     }
