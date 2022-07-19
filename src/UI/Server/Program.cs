@@ -1,14 +1,15 @@
 using Lamar.Microsoft.DependencyInjection;
-using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry()); });
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry()); });
 
-var app = StartupCheck(builder);
+
+var app = builder.Build();
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -33,16 +34,9 @@ app.UseEndpoints(endpoints =>
     endpoints.MapRazorPages();
     endpoints.MapControllers();
     endpoints.MapFallbackToFile("index.html");
+    endpoints.MapHealthChecks("_healthcheck");
 });
-app.Run();
 
-WebApplication StartupCheck(WebApplicationBuilder webApplicationBuilder)
-{
-    var webApplication = webApplicationBuilder.Build();
-    var items = webApplication.Services.CreateScope().ServiceProvider
-        .GetRequiredService<IChurchBulletinItemByDateHandler>().Handle(
-            new ChurchBulletinItemByDateAndTimeQuery(new DateTime(2000, 1, 1)));
-    Console.WriteLine(items.Count());
-    webApplication.Logger.LogInformation("starting the app");
-    return webApplication;
-}
+await app.Services.GetRequiredService<HealthCheckService>().CheckHealthAsync();
+
+app.Run();
