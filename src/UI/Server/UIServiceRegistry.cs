@@ -5,13 +5,14 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 public class UIServiceRegistry : ServiceRegistry
 {
-    public UIServiceRegistry(Assembly assembly)
+    public UIServiceRegistry()
     {
         
         Scan(scanner =>
         {
-            scanner.Assembly(assembly);
-            
+            scanner.WithDefaultConventions();
+            scanner.AssembliesFromApplicationBaseDirectory(
+                assembly => assembly.FullName!.Contains("UI.Startup"));
             scanner.LookForRegistries();
         });
     }

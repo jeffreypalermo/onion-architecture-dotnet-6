@@ -1,19 +1,15 @@
-using System.Diagnostics;
-using System.Reflection;
 using Lamar.Microsoft.DependencyInjection;
+using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
 using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
-var assembly = GetStartupAssembly();
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry(assembly)); });
 
+builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry()); });
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-
-var app = builder.Build();
-// app.Logger.LogInformation($"starting the app");
-// Configure the HTTP request pipeline.
+var app = StartupCheck(builder);
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -40,15 +36,13 @@ app.UseEndpoints(endpoints =>
 });
 app.Run();
 
-Assembly GetStartupAssembly()
+WebApplication StartupCheck(WebApplicationBuilder webApplicationBuilder)
 {
-    var startupDll = "ProgrammingWithPalermo.ChurchBulletin.UI.Startup.dll";
-    var currentDirectory = Path.Combine(Directory.GetCurrentDirectory(), @"bin\Debug\net6.0\");
-    Console.WriteLine(currentDirectory);
-    var fullPath = Path.Combine(currentDirectory, startupDll);
-    Debug.Assert(File.Exists(fullPath));
-    var assemblyName = AssemblyName.GetAssemblyName(fullPath);
-    var loadContext = new PluginLoadContext(fullPath);
-    var assembly1 = loadContext.LoadFromAssemblyName(assemblyName);
-    return assembly1;
+    var webApplication = webApplicationBuilder.Build();
+    var items = webApplication.Services.CreateScope().ServiceProvider
+        .GetRequiredService<IChurchBulletinItemByDateHandler>().Handle(
+            new ChurchBulletinItemByDateAndTimeQuery(new DateTime(2000, 1, 1)));
+    Console.WriteLine(items.Count());
+    webApplication.Logger.LogInformation("starting the app");
+    return webApplication;
 }
