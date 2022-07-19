@@ -12,7 +12,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Core.csproj" />
 		<ProjectReference Include="..\..\DataAccess\DataAccess.csproj"/>
-			<ProjectReference Include="..\Server\UI.Server.csproj" />
+		<ProjectReference Include="..\Server\UI.Server.csproj" />
 
 	</ItemGroup>
 

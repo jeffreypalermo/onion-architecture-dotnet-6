@@ -8,7 +8,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Host.UseLamar(registry => { registry.IncludeRegistry(new UIServiceRegistry()); });
 
-
 var app = builder.Build();
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
