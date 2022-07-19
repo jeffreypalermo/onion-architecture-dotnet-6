@@ -4,14 +4,15 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<EnableDynamicLoading>true</EnableDynamicLoading>
 		<AssemblyName>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Core.csproj" />
-		<ProjectReference Include="..\..\DataAccess\DataAccess.csproj" />
-		<ProjectReference Include="..\Server\UI.Server.csproj" />
+		<ProjectReference Include="..\..\DataAccess\DataAccess.csproj"/>
+			<ProjectReference Include="..\Server\UI.Server.csproj" />
 
 	</ItemGroup>
 
