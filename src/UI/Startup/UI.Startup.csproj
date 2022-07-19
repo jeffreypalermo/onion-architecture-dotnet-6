@@ -4,7 +4,6 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<EnableDynamicLoading>true</EnableDynamicLoading>
 		<AssemblyName>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>ProgrammingWithPalermo.ChurchBulletin.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
@@ -18,6 +17,8 @@
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;..\Server\$(OutDir)&quot; /Y/S/H/C/I/Q/R" />
+		<Exec Command="xcopy &quot;$(TargetDir)$(AssemblyName).deps.json&quot; &quot;..\Server\$(OutDir)$(AssemblyName.Replace(&quot;Startup&quot;, &quot;Server&quot;)).deps.json&quot; /Y/S/H/C/I/Q/R" />
+
 	</Target>
 
 </Project>

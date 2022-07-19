@@ -11,8 +11,6 @@
 	<ItemGroup>
 		<PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="8.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
-		<!--Need to find a solution for top project to not have to reference this native dependency.-->
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
