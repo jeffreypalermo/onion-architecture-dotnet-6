@@ -1,13 +1,11 @@
-﻿using System.Reflection;
-using Lamar;
+﻿using Lamar;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
-public class UIServiceRegistry : ServiceRegistry
+public class UiServiceRegistry : ServiceRegistry
 {
-    public UIServiceRegistry()
+    public UiServiceRegistry()
     {
-        
         Scan(scanner =>
         {
             scanner.WithDefaultConventions();
