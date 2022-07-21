@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Logging;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup;
 
@@ -11,10 +10,11 @@ public class HealthCheck : IHealthCheck
     {
         _logger = logger;
     }
-    
-    public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new CancellationToken())
+
+    public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
+        CancellationToken cancellationToken = new CancellationToken())
     {
-        _logger.LogInformation($"Health check success");
+        _logger.LogInformation("Health check success");
         return Task.FromResult(HealthCheckResult.Healthy());
     }
 }

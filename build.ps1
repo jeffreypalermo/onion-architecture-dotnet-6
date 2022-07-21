@@ -23,7 +23,7 @@ $script:databaseServer = $env:DatabaseServer
 if ([string]::IsNullOrEmpty($script:databaseServer)) { $script:databaseServer = "(LocalDb)\MSSQLLocalDB"}
 $databaseScripts = "$source_dir\Database\scripts"
 
-if ([string]::IsNullOrEmpty($version)) { $version = "9.9.9"}
+if ([string]::IsNullOrEmpty($version)) { $version = "1.0.0.0"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  
 Function Init {
@@ -88,6 +88,7 @@ Function MigrateDatabaseLocal {
 }
 
 Function PrivateBuild{
+	$projectConfig = "Debug"
 	$sw = [Diagnostics.Stopwatch]::StartNew()
 	Init
 	Compile
@@ -99,5 +100,12 @@ Function PrivateBuild{
 }
 
 Function CIBuild{
-	PrivateBuild
+	$sw = [Diagnostics.Stopwatch]::StartNew()
+	Init
+	Compile
+	UnitTests
+	MigrateDatabaseLocal
+	IntegrationTest
+	$sw.Stop()
+	write-host "Build time: " $sw.Elapsed.ToString()
 }
