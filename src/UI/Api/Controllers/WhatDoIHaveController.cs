@@ -1,7 +1,7 @@
 ﻿using Lamar;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup.Controllers;
+namespace ProgrammingWithPalermo.ChurchBulletin.UI.Api.Controllers;
 
 public class WhatDoIHaveController : ControllerBase
 {

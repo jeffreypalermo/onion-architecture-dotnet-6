@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 
-namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup.Controllers;
+namespace ProgrammingWithPalermo.ChurchBulletin.UI.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

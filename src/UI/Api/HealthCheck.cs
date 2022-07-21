@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace ProgrammingWithPalermo.ChurchBulletin.UI.Startup;
+namespace ProgrammingWithPalermo.ChurchBulletin.UI.Api;
 
 public class HealthCheck : IHealthCheck
 {

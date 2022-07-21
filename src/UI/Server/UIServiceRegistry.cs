@@ -17,7 +17,7 @@ public class UiServiceRegistry : ServiceRegistry
             scanner.WithDefaultConventions();
             scanner.AssemblyContainingType<Core.HealthCheck>();
             scanner.AssemblyContainingType<DataAccess.HealthCheck>();
-            scanner.AssemblyContainingType<Startup.HealthCheck>();
+            scanner.AssemblyContainingType<Api.HealthCheck>();
             scanner.AssemblyContainingType<HealthCheck>();
         });
 
@@ -25,6 +25,6 @@ public class UiServiceRegistry : ServiceRegistry
             .AddCheck<Core.HealthCheck>("Core")
             .AddCheck<DataAccess.HealthCheck>("DataAccess")
             .AddCheck<HealthCheck>("Server")
-            .AddCheck<Startup.HealthCheck>("Startup");
+            .AddCheck<Api.HealthCheck>("API");
     }
 }

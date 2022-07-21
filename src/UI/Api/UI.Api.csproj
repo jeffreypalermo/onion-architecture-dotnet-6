@@ -10,15 +10,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="8.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Core.csproj" />
-		<ProjectReference Include="..\..\DataAccess\DataAccess.csproj" />
-		<ProjectReference Include="..\Client\UI.Client.csproj" />
-		<ProjectReference Include="..\Api\UI.Api.csproj" />
 	</ItemGroup>
-
 
 </Project>

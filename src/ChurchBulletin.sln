@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Server", "UI\Server\UI.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Client", "UI\Client\UI.Client.csproj", "{E39B94C7-B569-444E-900A-5B43848D11EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Startup", "UI\Startup\UI.Startup.csproj", "{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Api", "UI\Api\UI.Api.csproj", "{C1F774AE-0D4F-4377-BEB4-77C89CB56F05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
