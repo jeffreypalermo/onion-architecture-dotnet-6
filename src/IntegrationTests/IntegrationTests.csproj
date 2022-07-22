@@ -34,8 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\UI\Server\UI.Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>
