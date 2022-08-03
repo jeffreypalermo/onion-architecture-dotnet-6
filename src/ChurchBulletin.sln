@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arch", "arch", "{20334D25-8
 		..\arch\arch-c4-container-deployment.puml = ..\arch\arch-c4-container-deployment.puml
 		..\arch\arch-c4-system.puml = ..\arch\arch-c4-system.puml
 		..\arch\PlantUMLSetup.ps1 = ..\arch\PlantUMLSetup.ps1
+		..\arch\SolutionStructure.png = ..\arch\SolutionStructure.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{A1CAEE0D-32BC-46C9-9A91-A8E4B09F7875}"
