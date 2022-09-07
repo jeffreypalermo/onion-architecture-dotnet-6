@@ -1,5 +1,6 @@
 ﻿using Lamar;
 using Microsoft.EntityFrameworkCore;
+using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
@@ -15,16 +16,14 @@ public class UiServiceRegistry : ServiceRegistry
         Scan(scanner =>
         {
             scanner.WithDefaultConventions();
-            scanner.AssemblyContainingType<Core.HealthCheck>();
-            scanner.AssemblyContainingType<DataAccess.HealthCheck>();
+            scanner.AssemblyContainingType<CanConnectToDatabaseHealthCheck>();
             scanner.AssemblyContainingType<Api.HealthCheck>();
-            scanner.AssemblyContainingType<HealthCheck>();
+            scanner.AssemblyContainingType<Is64BitProcessHealthCheck>();
         });
 
         this.AddHealthChecks()
-            .AddCheck<Core.HealthCheck>("Core")
-            .AddCheck<DataAccess.HealthCheck>("DataAccess")
-            .AddCheck<HealthCheck>("Server")
+            .AddCheck<CanConnectToDatabaseHealthCheck>("DataAccess")
+            .AddCheck<Is64BitProcessHealthCheck>("Server")
             .AddCheck<Api.HealthCheck>("API");
     }
 }

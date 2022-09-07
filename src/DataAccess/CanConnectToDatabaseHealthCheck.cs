@@ -4,12 +4,12 @@ using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 
-public class HealthCheck : IHealthCheck
+public class CanConnectToDatabaseHealthCheck : IHealthCheck
 {
-    private readonly ILogger<HealthCheck> _logger;
+    private readonly ILogger<CanConnectToDatabaseHealthCheck> _logger;
     private readonly DataContext _context;
 
-    public HealthCheck(ILogger<HealthCheck> logger, DataContext context)
+    public CanConnectToDatabaseHealthCheck(ILogger<CanConnectToDatabaseHealthCheck> logger, DataContext context)
     {
         _logger = logger;
         _context = context;
