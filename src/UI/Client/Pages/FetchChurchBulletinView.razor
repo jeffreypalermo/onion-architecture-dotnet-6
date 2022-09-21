@@ -1,6 +1,6 @@
-﻿@page "/fetchchurchbulletin"
-@using ProgrammingWithPalermo.ChurchBulletin.Core.Model
+﻿@using ProgrammingWithPalermo.ChurchBulletin.Core.Model
 @inject HttpClient Http
+@inherits Palermo.BlazorMvc.ViewComponentBase
 
 <PageTitle>Church Bulletin</PageTitle>
 
@@ -8,7 +8,7 @@
 
 <p>This component demonstrates fetching church bulletin items.</p>
 
-@if (bulletins == null)
+@if (Model == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -22,7 +22,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var bulletin in bulletins)
+            @foreach (var bulletin in Model)
             {
                 <tr>
                     <td>@bulletin.Date.ToShortDateString()</td>
@@ -34,10 +34,6 @@ else
 }
 
 @code {
-    private ChurchBulletinItem[]? bulletins;
+    public ChurchBulletinItem[]? Model { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        bulletins = await Http.GetFromJsonAsync<ChurchBulletinItem[]>("ChurchBulletinItem");
-    }
 }
