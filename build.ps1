@@ -132,7 +132,6 @@ Function CIBuild{
 	UnitTests
 	MigrateDatabaseLocal
 	IntegrationTest
-	AcceptanceTest
 	$sw.Stop()
 	write-host "Build time: " $sw.Elapsed.ToString()
 }
