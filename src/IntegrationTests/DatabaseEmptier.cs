@@ -5,7 +5,7 @@ namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
 
 public sealed class DatabaseEmptier
 {
-    private static readonly string[] _ignoredTables = { "[dbo].[sysdiagrams]", "[dbo].[usd_AppliedDatabaseScript]" };
+    private static readonly string[] _ignoredTables = {"[dbo].[sysdiagrams]", "[dbo].[usd_AppliedDatabaseScript]"};
     private static string? _deleteSql;
     private readonly DatabaseFacade _database;
 

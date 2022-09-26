@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using ProgrammingWithPalermo.ChurchBulletin.Core;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 
 namespace ProgrammingWithPalermo.ChurchBulletin.IntegrationTests;
 
