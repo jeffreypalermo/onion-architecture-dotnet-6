@@ -33,7 +33,7 @@ public class TestDriver : IDisposable
         return _driver;
     }
 
-    public void TakeScreenshot(ushort stepNumber, string testName, string stepName)
+    public void TakeScreenshot(int stepNumber, string testName, string stepName)
     {
         var chromeDriver = (ChromeDriver) GetDriver();
         var filename = $"{testName}-{stepNumber:000}-{stepName}.png";

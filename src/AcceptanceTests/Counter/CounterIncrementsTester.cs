@@ -19,8 +19,11 @@ public class CounterIncrementsTester
         _testDriver.Dispose();
     }
 
-    [Test]
-    public void ShouldIncrementOnPress()
+    [TestCase(1, 1)]
+    [TestCase(2, 2)]
+    [TestCase(5, 5)]
+    [TestCase(9, 9)]
+    public void ShouldIncrementOnPress(int numberOfButtonPresses, int expectedFinalCount)
     {
         //arrange
         var hostAddress = "https://localhost:7174"; //these environmental keys get refactored out
@@ -37,11 +40,14 @@ public class CounterIncrementsTester
         currentCountElement.Text.ShouldContain("0");
 
         //act
-        counterButton.Click();
-        _testDriver.TakeScreenshot(20, TestContext.CurrentContext.Test.FullName, "Act");
+        for (int i = 0; i < numberOfButtonPresses; i++)
+        {
+            counterButton.Click();
+            _testDriver.TakeScreenshot(20+i, TestContext.CurrentContext.Test.FullName, "Act");
+        }
 
         //assert
-        currentCountElement.Text.ShouldContain("1");
+        currentCountElement.Text.ShouldContain(expectedFinalCount.ToString());
         _testDriver.TakeScreenshot(30, TestContext.CurrentContext.Test.FullName, "Assert");
     }
 }
