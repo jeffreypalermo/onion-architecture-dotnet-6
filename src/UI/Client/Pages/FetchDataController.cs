@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Diagnostics;
+using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using Palermo.BlazorMvc;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
@@ -10,10 +11,11 @@ namespace UI.Client.Pages;
 public class FetchDataController : ControllerComponentBase<FetchDataView>
 {
     private WeatherForecast[]? _forecasts;
-    [Inject] public HttpClient Http { get; set; }
+    [Inject] public HttpClient? Http { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        Debug.Assert(Http != null, nameof(Http) + " != null");
         _forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
         View.Model = _forecasts;
     }
