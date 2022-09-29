@@ -4,8 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
-
+- "*"
 pool:
   vmImage: windows-latest
 
@@ -15,7 +14,7 @@ steps:
   inputs:
     targetType: filePath
     filePath: ./build.ps1
-    arguments: '; PrivateBuild'
+    arguments: '; CIBuild'
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results ./build/test/*.trx'

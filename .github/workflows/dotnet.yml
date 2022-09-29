@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "*" ]
   pull_request:
     branches: [ "master" ]
 
@@ -19,5 +19,5 @@ jobs:
         dotnet-version: 6.0.x
     - name: Build Script
       run: |
-        .\PrivateBuild.ps1
+        . .\build.ps1 ; CIBuild
 

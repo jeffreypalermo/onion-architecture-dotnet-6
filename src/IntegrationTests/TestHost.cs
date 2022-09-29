@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Queries;
-using ProgrammingWithPalermo.ChurchBulletin.DataAccess;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Handlers;
 using ProgrammingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 
@@ -19,18 +17,20 @@ public static class TestHost
 
     public static IHost Instance
     {
-        get { EnsureDependenciesRegistered();
+        get
+        {
+            EnsureDependenciesRegistered();
             return _host!;
         }
     }
 
-    public static T GetRequiredService<T>() where T: notnull
+    public static T GetRequiredService<T>() where T : notnull
     {
         var serviceScope = Instance.Services.CreateScope();
         var provider = serviceScope.ServiceProvider;
         return provider.GetRequiredService<T>();
     }
-        
+
     private static void Initialize()
     {
         var host = Host.CreateDefaultBuilder()
@@ -41,7 +41,7 @@ public static class TestHost
 
                 config
                     .AddJsonFile("appsettings.json", false, true)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                     .AddEnvironmentVariables();
             })
             .ConfigureServices(s =>

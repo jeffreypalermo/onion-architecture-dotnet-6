@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
-
-namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
+﻿namespace ProgrammingWithPalermo.ChurchBulletin.UI.Server;
 
 public class Is64BitProcessHealthCheck : IHealthCheck
 {
