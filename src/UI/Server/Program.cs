@@ -1,7 +1,3 @@
-using Lamar.Microsoft.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using ProgrammingWithPalermo.ChurchBulletin.UI.Server;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();

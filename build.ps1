@@ -5,6 +5,7 @@ $base_dir = resolve-path .\
 $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
 $integrationTestProjectPath = "$source_dir\IntegrationTests"
+$acceptanceTestProjectPath = "$source_dir\AcceptanceTests"
 $projectConfig = $env:BuildConfiguration
 $framework = "net6.0"
 $version = $env:Version
@@ -27,7 +28,7 @@ if ([string]::IsNullOrEmpty($version)) { $version = "1.0.0.0"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  
 Function Init {
-    rd $build_dir -recurse -force  -ErrorAction Ignore
+	rm -r -fo $build_dir -ErrorAction Ignore
 	md $build_dir > $null
 
 	exec {
@@ -45,7 +46,11 @@ Function Init {
 
 Function Compile{
 	exec {
-		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental /p:Version=$version /p:Authors="Programming with Palermo" /p:Product="Church Bulletin"
+		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v `
+			$verbosity -maxcpucount --configuration $projectConfig --no-incremental `
+			/p:TreatWarningsAsErrors="true" `
+			/p:Version=$version /p:Authors="Programming with Palermo" `
+			/p:Product="Church Bulletin"
 	}
 }
 
@@ -81,6 +86,26 @@ Function IntegrationTest{
 	}
 }
 
+Function AcceptanceTest{
+	$serverProcess = Start-Process dotnet.exe "run --project $source_dir\UI\Server\UI.Server.csproj --configuration $projectConfig -nologo --no-restore --no-build -v $verbosity" -PassThru
+	Start-Sleep 1 #let the server process spin up for 1 second
+
+	Push-Location -Path $acceptanceTestProjectPath
+
+	try {
+		exec {
+			& dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura -nologo -v $verbosity --logger:trx `
+			--results-directory $test_dir --no-build `
+			--no-restore --configuration $projectConfig `
+			--collect:"Code Coverage" 
+		}
+	}
+	finally {
+		Pop-Location
+		Stop-Process -id $serverProcess.Id
+	}
+}
+
 Function MigrateDatabaseLocal {
 	exec{
 		& $aliaSql $databaseAction $script:databaseServer $databaseName $databaseScripts
@@ -95,6 +120,7 @@ Function PrivateBuild{
 	UnitTests
 	MigrateDatabaseLocal
 	IntegrationTest
+	AcceptanceTest
 	$sw.Stop()
 	write-host "Build time: " $sw.Elapsed.ToString()
 }
