@@ -19,6 +19,7 @@ else
             <tr>
                 <th>Date</th>
                 <th>Name</th>
+                <th>Place</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@ else
                 <tr>
                     <td>@bulletin.Date.ToShortDateString()</td>
                     <td>@bulletin.Name</td>
+                    <td>@bulletin.GetFriendlyPlace()</td>
                 </tr>
             }
         </tbody>

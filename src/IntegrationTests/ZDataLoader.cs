@@ -11,10 +11,10 @@ public class ZDataLoader
     {
         new DatabaseEmptier(TestHost.GetRequiredService<DbContext>().Database).DeleteAllData();
 
-        var item1 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "one"};
-        var item2 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "two"};
-        var item3 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "three"};
-        var item4 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "four"};
+        var item1 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "one", Place = "Sanctuary"};
+        var item2 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "two", Place = "Room 205"};
+        var item3 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "three", Place = "Nursery"};
+        var item4 = new ChurchBulletinItem {Date = new DateTime(2000, 1, 1), Name = "four", Place = "Youth room"};
 
         using (var context = TestHost.GetRequiredService<DbContext>())
         {
