@@ -1,4 +1,3 @@
-using ProgrammingWithPalermo.ChurchBulletin.Core;
 using ProgrammingWithPalermo.ChurchBulletin.Core.Model;
 using Shouldly;
 
@@ -9,8 +8,8 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UnitTests
         [Test]
         public void ShouldHaveEntityEqualitySemantics()
         {
-            new ChurchBulletinItem(){Id = Guid.NewGuid()}
-                .ShouldNotBe(new ChurchBulletinItem() { Id = Guid.NewGuid() });
+            new ChurchBulletinItem { Id = Guid.NewGuid() }
+                .ShouldNotBe(new ChurchBulletinItem { Id = Guid.NewGuid() });
 
             var item1 = new ChurchBulletinItem();
             var item2 = new ChurchBulletinItem();
@@ -19,6 +18,13 @@ namespace ProgrammingWithPalermo.ChurchBulletin.UnitTests
             item1.ShouldBe(item2);
             item2.ShouldBe(item1);
             Assert.True(item1 == item2);
+        }
+
+        [Test]
+        public void ShouldOutputFriendlyPlace()
+        {
+            var item = new ChurchBulletinItem(){Place = "Sanctuary"};
+            item.GetFriendlyPlace().ShouldBe("@ Sanctuary");
         }
     }
 }
