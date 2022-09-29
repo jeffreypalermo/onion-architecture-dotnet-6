@@ -1,0 +1,15 @@
+﻿@inherits Palermo.BlazorMvc.ViewComponentBase
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @Model</p>
+
+<button class="btn btn-primary" @onclick="OnIncrement!" ref="clickMeButton2">Click me</button>
+
+@code {
+    public int Model { get; set; }
+
+    public Action? OnIncrement { get; set; }
+}
