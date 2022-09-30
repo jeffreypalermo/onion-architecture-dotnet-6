@@ -141,7 +141,7 @@ Function PackageAcceptanceTests {
 
 Function Package{
 	Write-Output "Packaging nuget packages"
-	dotnet tool install --global Octopus.DotNet.Cli | Write-Host $_ #prevents red color is already installed
+	dotnet tool install --global Octopus.DotNet.Cli | Write-Output $_ #prevents red color is already installed
     PackageUI
     PackageDatabase
     PackageAcceptanceTests
