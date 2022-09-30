@@ -13,7 +13,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="appsettings.test.json" />
 		<None Remove="coverage.cobertura.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="appsettings.test.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -35,12 +42,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\UI\Server\UI.Server.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="appsettings.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 
 </Project>

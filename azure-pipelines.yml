@@ -37,3 +37,10 @@ steps:
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/IntegrationTests/coverage.cobertura.xml'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    packagesToPush: 'build\*.$(Build.BuildNumber).nupkg'
+    publishVstsFeed: 'ProgrammingWithPalermo/ChurchBulletin'

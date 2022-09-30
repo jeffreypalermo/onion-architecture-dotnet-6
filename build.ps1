@@ -6,6 +6,8 @@ $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
 $integrationTestProjectPath = "$source_dir\IntegrationTests"
 $acceptanceTestProjectPath = "$source_dir\AcceptanceTests"
+$uiProjectPath = "$source_dir\UI\Server"
+$databaseProjectPath = "$source_dir\Database"
 $projectConfig = $env:BuildConfiguration
 $framework = "net6.0"
 $version = $env:Version
@@ -112,6 +114,39 @@ Function MigrateDatabaseLocal {
 	}
 }
 
+Function PackageUI {    
+    exec{
+        & dotnet publish $uiProjectPath -nologo --no-restore --no-build -v $verbosity --configuration $projectConfig
+    }
+	exec{
+		& dotnet-octo pack --id "$projectName.UI" --version $version --basePath $uiProjectPath\bin\$projectConfig\$framework\publish --outFolder $build_dir --overwrite
+	}
+}
+
+Function PackageDatabase {    
+    exec{
+		& dotnet-octo pack --id "$projectName.Database" --version $version --basePath $databaseProjectPath --outFolder $build_dir --overwrite
+	}
+}
+
+Function PackageAcceptanceTests {       
+    # Use Debug configuration so full symbols are available to display better error messages in test failures
+    exec{
+        & dotnet publish $acceptanceTestProjectPath -nologo --no-restore -v $verbosity --configuration Debug
+    }
+	exec{
+		& dotnet-octo pack --id "$projectName.AcceptanceTests" --version $version --basePath $acceptanceTestProjectPath\bin\Debug\$framework\publish --outFolder $build_dir --overwrite
+	}
+}
+
+Function Package{
+	Write-Output "Packaging nuget packages"
+	dotnet tool install --global Octopus.DotNet.Cli | Write-Host $_ #prevents red color is already installed
+    PackageUI
+    PackageDatabase
+    PackageAcceptanceTests
+}
+
 Function PrivateBuild{
 	$projectConfig = "Debug"
 	$sw = [Diagnostics.Stopwatch]::StartNew()
@@ -132,6 +167,7 @@ Function CIBuild{
 	UnitTests
 	MigrateDatabaseLocal
 	IntegrationTest
+	Package
 	$sw.Stop()
 	write-host "Build time: " $sw.Elapsed.ToString()
 }
