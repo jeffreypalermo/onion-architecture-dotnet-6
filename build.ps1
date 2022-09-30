@@ -41,8 +41,8 @@ Function Init {
 		}
     
 
-    Write-Host $projectConfig
-    Write-Host $version
+    Write-Output $projectConfig
+    Write-Output $version
 }
 
 
