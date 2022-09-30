@@ -2,7 +2,8 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-name: $(Version)
+
+name: 1.0.$(Rev:r).0
 
 trigger:
 - "*"
